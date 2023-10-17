@@ -88,6 +88,11 @@ class DataTransformation:
 
             input_feature_test_df = test_df.drop(columns=[target_column], axis=1)
             target_feature_test_df = test_df[target_column]
+
+            # Preprocessing Target Variables
+            target_feature_train_df = target_feature_train_df.map({ "e": 0, "p": 1})
+            target_feature_test_df = target_feature_test_df.map({ "e": 0, "p": 1})
+            logging.info("Target Variables have been preprocessed.")
             
             logging.info(f"Applying preprocessing object on training and testing dataframe.")
 
