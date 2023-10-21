@@ -15,7 +15,7 @@ CORS(app, origins='http://localhost:3000')
 @app.route('/prediction', methods=['GET', 'POST'])
 def predict_datapoint():
     if request.method == 'GET':
-        return print("getting")
+        return jsonify({"message": "getting"})
 
     else:
         data=CustomData(
