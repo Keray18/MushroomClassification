@@ -3,7 +3,8 @@ import sys
 import numpy as np
 import pandas as pd
 
-from sklearn.preprocessing import OneHotEncoder, StandardScaler
+from sklearn.decomposition import PCA
+from sklearn.preprocessing import OneHotEncoder
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 
@@ -27,34 +28,23 @@ class DataTransformation:
     def get_data_transformer_object(self):
         try:
             columns = [
-                "cap-shape",
-                "cap-surface",
-                "cap-color",
-                "bruises",
-                "odor",
-                "gill-attachment",
-                "gill-spacing",
-                "gill-size",
-                "gill-color",
-                "stalk-shape",
-                "stalk-root",
-                "stalk-surface-above-ring",
-                "stalk-surface-below-ring",
-                "stalk-color-above-ring",
-                "stalk-color-below-ring",
-                "veil-type",
-                "veil-color",
-                "ring-number",
-                "ring-type",
-                "spore-print-color",
-                "population",
-                "habitat"
+                "odor", 
+                "gill_color", 
+                "spore_print_color", 
+                "cap_color", 
+                "bruises", 
+                "stalk_surface_above_ring", 
+                "stalk_surface_below_ring", 
+                "gill_size", 
+                "ring_type", 
+                "population"
             ]
 
             col_pipeline = Pipeline(
                 steps=[
                     ("one_hot_encoding", OneHotEncoder(sparse_output=False)),
-                    ("scaler", StandardScaler(with_mean=False))
+                    ("pca", PCA(n_components=2))
+                    
                 ]
             )
 
