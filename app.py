@@ -9,7 +9,7 @@ from src.pipelines.prediction_pipeline import CustomData, PredictPipeline
 
 
 app=Flask(__name__)
-CORS(app, origins='http://localhost:3000/')
+CORS(app)
 
 # Home Route
 @app.route('/prediction', methods=['GET', 'POST'])
